@@ -1,0 +1,35 @@
+%{
+#include<stdio.h>
+int comcount=0;
+%}
+%s COMMENT
+%%
+"/*" {BEGIN(COMMENT);}
+<COMMENT>. {;}
+<COMMENT>"*/" { BEGIN(INITIAL); comcount++; }
+"//".* {; comcount++;}
+\\n {fprintf(yyout, "%s",yytext);}
+%%
+void main() {
+	yyin=fopen("input.c","r");
+	yyout=fopen("output.c","w");
+	yylex();
+	printf("the no of comment lines are: %d\n",comcount);
+}
+int yywrap() {
+	return 1;
+}
+
+------------------------------input.c
+/* Sample program
+   included with comments */
+#include<stdio.h>
+void main()
+{
+	//start of the main function
+	int a, b, sum;
+	a = 5;
+	b = 6;
+	sum = a+b; //calculation
+	printf("Sum=%d\n", sum);
+}

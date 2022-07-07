@@ -114,8 +114,6 @@ public class MainActivity extends AppCompatActivity {
                     next=1;
                 }
                 Bitmap img=((BitmapDrawable)drawable).getBitmap();
-                18CSMP68 Mobile Application Development Lab Manual 2020-2021
-                Department of Computer Science & Engineering, B.I.T P a g e | 34
                 try {
                     wpm.setBitmap(img);
                 } catch (IOException e) {

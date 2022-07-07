@@ -27,8 +27,6 @@
  android:layout_height="wrap_content"
  android:id="@+id/start"
  android:text="START"
-18CSMP68 Mobile Application Development Lab Manual 2020-2021
-Department of Computer Science & Engineering, B.I.T P a g e | 37
  android:onClick="start"
  android:textSize="20sp"
  />

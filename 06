@@ -139,8 +139,6 @@ Humidity:"+getValue("humidity",element2)+"\n");
  resjson.setText(resjson.getText()+"\n City Name:"+obj.getString("name")+"\n");
  resjson.setText(resjson.getText()+"\n Lat:"+obj.getString("lat")+"\n");
  resjson.setText(resjson.getText()+"\n Long:"+obj.getString("long")+"\n");
-18CSMP68 Mobile Application Development Lab Manual 2020-2021
-Department of Computer Science & Engineering, B.I.T P a g e | 46
  resjson.setText(resjson.getText()+"\n Temperature:"+obj.getString("temp")+"\n");
  resjson.setText(resjson.getText()+"\n Humidity:"+obj.getString("humidity")+"\n");
  resjson.setText(resjson.getText()+"\n --------------------");

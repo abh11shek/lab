@@ -96,8 +96,6 @@ public class MainActivity extends AppCompatActivity {
  for(int i=0;i<nList.getLength();i++)
  {
  Node node=nList.item(i);
-18CSMP68 Mobile Application Development Lab Manual 2020-2021
-Department of Computer Science & Engineering, B.I.T P a g e | 45
  if(node.getNodeType()==Node.ELEMENT_NODE)
  {
  Element element2=(Element)node;

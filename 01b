@@ -1,47 +1,48 @@
+LEX PART
 %{
-#include<stdio.h>
 #include "y.tab.h"
+#include <stdlib.h>
+extern int yylval;
 %}
 %%
-a {return A;}
-b {return B;}
+[0-9]+ {yylval=atoi(yytext);
+return NUM;}
 \n {return 0;}
 . {return yytext[0];}
 %%
-
----------------------------------------
-
+YACC PART
 %{
-#include <stdio.h>
-int aCount=0, n;
+#include<stdio.h>
+int valid=1;
 %}
-
-%token A
-%token B
-
+%token NUM
+%left '+' '-'
+%left '*' '/'
 %%
-S : X B { if(aCount>n||aCount<n) YYFAIL(); }
-X : X T | T
-T : A { aCount++;}
-  ;
+Stmt:expr{if(valid)
+{
+printf("Result=%d\n",$$);}
+}
+expr:expr'+'expr {$$=$1+$3;}
+|expr'-'expr {$$=$1-$3;}
+|expr'*'expr {$$=$1*$3;}
+|expr'/'expr {if($3==0){
+valid=0;printf("Divide by zero error\n");}
+else
+$$=$1/$3;}
+|'('expr')' {$$=$2;}
+|NUM {$$=$1;}
+;
 %%
-int main()
+main()
 {
-	printf("Enter the value of n \n");
-	scanf("%d",&n);
-	printf("Enter the string:");
-	yyparse();
-	printf("Valid string\n");
+printf("Enter arithmetic exression:\n");
+yyparse();
+if(valid==1)
+printf("Expression is valid\n");
 }
-
-int YYFAIL()
-{
-	printf("Invalid count of 'a'\n");
-	exit(0);
-}
-
 int yyerror()
-{ 
-	printf("Invalid string\n");
-	exit(0);
+{
+printf("Invalid expression\n");
+exit(0);
 }

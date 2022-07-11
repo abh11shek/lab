@@ -43,3 +43,11 @@ fprintf(fp2,"\nMOV %s,R0\n",result);
 fclose(fp1);
 fclose(fp2);
 }
+
+
+
+
+T1 -B = ?
+T2 C + D
+T3 T1 * T2
+A T3 = ?

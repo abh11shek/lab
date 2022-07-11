@@ -1,0 +1,53 @@
+class HelloWorld {
+    static int pos = 0;
+    static int n;
+    
+    public static void main(String args[]) {
+        n = 3;
+        int arr[] = new int[n];
+        int priority[] = new int[n];
+        
+        String str = "70120304230321201701";
+        n
+        for(int i = 0; i < n; i++){
+            arr[i] = str.charAt(i)-'0';
+            priority[i] = pos++;
+            print(arr);
+        }
+        
+        for(int i = n; i < str.length(); i++){
+            int val = str.charAt(i)-'0';
+            if(indexOf(val, arr) == -1) {
+                int l = getLeastPriorityIndex(priority);
+                arr[l] = val;
+                priority[l] = pos++;
+            }
+            print(arr);
+        }
+    }
+    
+    static void print(int arr[]) {
+        for(int i = 0; i<arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+    
+    static int getLeastPriorityIndex(int[] priority) {
+        int least = 100, l = -1;
+        for(int i = 0; i<priority.length; i++) {
+            if(least > priority[i]){
+                least = priority[i];
+                l = i;
+            }
+        }
+        return l;
+    }
+    
+    static int indexOf(int val, int[] arr) {
+        for(int i = 0; i<arr.length; i++)
+            if(arr[i] == val)
+                return i;
+        return -1;
+    }
+}

@@ -1,20 +1,20 @@
 import pandas as pd
 import numpy as np
-
 data = pd.read_csv('Training_examples.csv')
-concept = np.array(data)[:,:-1]
+concepts = np.array(data)[:,:-1]
 
-print('The concept to be learned')
-print(concept)
+print('The concepts to be learned')
+print(concepts)
 target = np.array(data)[:,-1]
 print(target)
 print('\n')
 
 def learn(concepts, target):
-    specific_h = concept[0].copy()
-    general_h = [['?' for i in range(len(specific_h))] for i in range(len(specific_h))]
-    
-    for i, h in enumerate(concept):
+    specific_h = concepts[0].copy()
+    general_h = [['?' for i in range(len(specific_h))] 
+                         for i in range(len(specific_h))]
+
+    for i, h in enumerate(concepts):
         if target[i] == 'Yes':
             for j in range(len(specific_h)):
                 if h[j] != specific_h[j]:
@@ -26,15 +26,16 @@ def learn(concepts, target):
                     general_h[j][j] = specific_h[j]
                 else:
                     general_h[j][j] = '?'
-    
-    indices = [i for i,val in enumerate(general_h) if val == ['?' for i in range(len(specific_h))]]
+
+    indices = [i for i,val in enumerate(general_h) 
+                       if val == ['?' for i in range(len(specific_h))]]
     
     for i in indices:
         general_h.remove(['?' for i in range(len(specific_h))])
-        
+
     return specific_h,general_h
 
-s_final,g_final = learn(concept,target)
+s_final,g_final = learn(concepts,target)
 print("Final S: ",s_final)
 print("Final G: ",g_final)
 

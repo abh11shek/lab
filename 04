@@ -60,8 +60,7 @@ def get_rules(root, rule, rules):
         rules.append(rule[:-1]+"=>"+root.label)
         return rules
     for val in root.branch:
-        # print(val)
-        get_rules(root.branch[val], rule+root.label+"="+str(val)+"^", rules)
+        rules = get_rules(root.branch[val], rule+root.label+"="+str(val)+"^", rules)
     return rules
 
 def test(tree, test_str):
